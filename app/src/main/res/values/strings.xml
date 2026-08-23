@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">pacenote</string>
+    <string name="nav_results">home</string>
+    <string name="nav_create">new</string>
+
+    <string name="results_title">overview</string>
+    <string name="results_loading">updating results</string>
+    <string name="dashboard_live">live summary</string>
+    <string name="dashboard_total_label">training time</string>
+    <string name="dashboard_sessions">sessions</string>
+    <string name="dashboard_split">local / remote</string>
+    <string name="refresh">refresh</string>
+    <string name="filter_all">all</string>
+    <string name="filter_local">local</string>
+    <string name="filter_remote">remote</string>
+    <string name="add_result">add result</string>
+    <string name="no_results_title">no results yet</string>
+    <string name="no_results_body">add your first session to start the overview.</string>
+    <string name="no_filtered_results_body">no results match this filter.</string>
+    <string name="results_error_title">couldn’t load results</string>
+    <string name="retry">try again</string>
+
+    <string name="create_eyebrow">new entry</string>
+    <string name="create_title">new result</string>
+    <string name="details_title">details</string>
+    <string name="workout_name">workout name</string>
+    <string name="workout_name_placeholder">night tempo run</string>
+    <string name="location">location</string>
+    <string name="location_placeholder">stromovka, prague</string>
+    <string name="duration">duration</string>
+    <string name="duration_placeholder">45</string>
+    <string name="minutes_short">min</string>
+    <string name="storage_title">save to</string>
+    <string name="storage_local_title">this device</string>
+    <string name="storage_local_body">private · persists after restart</string>
+    <string name="storage_remote_title">remote demo</string>
+    <string name="storage_remote_body">shared · resets with the app</string>
+    <string name="preview_label">preview</string>
+    <string name="preview_untitled">untitled result</string>
+    <string name="save_result">save result</string>
+    <string name="saving_result">saving…</string>
+    <string name="saved_local">saved on this device</string>
+    <string name="saved_remote">saved to the remote demo</string>
+    <string name="storage_local_badge">local</string>
+    <string name="storage_remote_badge">remote</string>
+
+</resources>
