@@ -4,6 +4,12 @@ pacenote is a production-like android demonstration app for recording sports res
 
 the project intentionally favors a reliable first run over a backend that requires a recruiter's firebase account, downloaded credentials, or secret configuration.
 
+## screenshot
+
+<p align="center">
+  <img src="docs/screenshots/pacenote-overview.png" alt="pacenote overview" width="360">
+</p>
+
 ## assignment coverage
 
 | requirement | implementation |
