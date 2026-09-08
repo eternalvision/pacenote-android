@@ -5,6 +5,8 @@
 .kotlin/
 .remember/
 local.properties
+keystore.properties
+*.jks
 build/
 **/build/
 captures/
