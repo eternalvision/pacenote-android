@@ -114,13 +114,19 @@ prerequisites:
 
 the reproducible build stack is agp 9.0.1, gradle 9.1.0, kotlin 2.3.20 with agp built-in kotlin, ksp 2.3.10, and hilt 2.59.2. in android studio, set **gradle jdk** to the same jdk as `JAVA_HOME`; on the verified development machine both point to azul zulu 21. open the repository root, let gradle sync, select the `app` configuration, and run it. no api keys, font downloads, or environment variables are required.
 
-command line:
+for production publishing, create a `keystore.properties` file from the example:
+
+```bash
+cp keystore.properties.example keystore.properties
+```
+
+fill in the keystore path and credentials, then build with:
 
 ```bash
 ./gradlew :app:koverVerifyDebug lintDebug assembleDebug assembleRelease
 ```
 
-the debug apk is produced at `app/build/outputs/apk/debug/app-debug.apk`; the minified unsigned release apk is produced at `app/build/outputs/apk/release/app-release-unsigned.apk`.
+if no production keystore is configured, the release build falls back to the debug signing config so local verification still works. the debug apk is produced at `app/build/outputs/apk/debug/app-debug.apk`; the minified signed release apk is produced at `app/build/outputs/apk/release/app-release.apk` when a valid release keystore is supplied.
 
 ## tests and review aids
 

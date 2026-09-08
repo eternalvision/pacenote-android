@@ -1,5 +1,14 @@
+import java.io.FileInputStream
+import java.util.Properties
 import kotlinx.kover.gradle.plugin.dsl.CoverageUnit
 import kotlinx.kover.gradle.plugin.dsl.GroupingEntityType
+
+val keystorePropertiesFile = rootProject.file("keystore.properties")
+val keystoreProperties = Properties().apply {
+    if (keystorePropertiesFile.exists()) {
+        load(FileInputStream(keystorePropertiesFile))
+    }
+}
 
 plugins {
     alias(libs.plugins.android.application)
@@ -14,6 +23,22 @@ android {
     namespace = "com.alexander.pacenote"
     compileSdk = 36
 
+    if (keystorePropertiesFile.exists()) {
+        signingConfigs {
+            create("release") {
+                val storeFilePath = keystoreProperties["storeFile"] as String
+                val storeFileCandidate = rootProject.file(storeFilePath)
+                require(storeFileCandidate.exists()) {
+                    "Release keystore file not found: $storeFileCandidate"
+                }
+                storeFile = storeFileCandidate
+                storePassword = keystoreProperties["storePassword"] as String
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+            }
+        }
+    }
+
     defaultConfig {
         applicationId = "com.alexander.pacenote"
         minSdk = 26
@@ -26,9 +51,18 @@ android {
     }
 
     buildTypes {
+        debug {
+            isDebuggable = true
+        }
         release {
+            isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
@@ -110,6 +144,9 @@ kover {
                 }
                 rule("logic branch coverage") {
                     minBound(100, coverageUnits = CoverageUnit.BRANCH)
+                }
+                rule("logic instruction coverage") {
+                    minBound(100, coverageUnits = CoverageUnit.INSTRUCTION)
                 }
             }
         }
